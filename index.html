@@ -14,45 +14,36 @@
   <title>Registro de Gastos</title>
 </head>
 <body>
-  <div class="card-header bg-success bg-gradient text-white" style="padding: 10px;">
-    <h1 class="text-center" style="margin: 0;">Registro de Gastos</h1>
+  <div class="bg-success bg-gradient">
+    <h1 class="text-center text-white" style="margin: 0;">Registro de Gastos</h1>
+    <div class="card-header text-white" style="padding: 10px;" id="actualDate">
+    </div>
   </div>
-  <header style="display: flex; justify-content: space-between; padding: 10px; column-gap: 10px;">
-    <div class="card" style="width: -webkit-fill-available;">
-      <div class="card-header bg-success bg-gradient text-white text-center">
-        Gasto mensual disponible
-      </div>
-      <div class="card-body" id="card-body">
-      </div>
-    </div>
-    <!-- <div class="card" style="width: -webkit-fill-available;">
-      <div class="card-header bg-primary bg-gradient text-white text-center">
-        Gasto semanal
-      </div>
-      <div class="card-body">
-        <p class="card-text text-center">$250.00</p>
-      </div>
-    </div> -->
+  <header style="display: flex; justify-content: space-between; padding: 10px; padding-bottom: 0; column-gap: 10px;">
+    <div class="w-100" id="balanceDiv"></div>
+    <div class="w-100" id="expensesDiv"></div>
   </header>
-  <main class="" style="padding: 10px;">
-    <div class="input-group mb-3">
-      <span class="input-group-text" id="basic-addon1">Monto</span>
-      <input type="number" class="form-control" placeholder="Ejemplo: 70" aria-label="Monto" aria-describedby="basic-addon1">
+  <main class="">
+    <div style="padding: 10px;" id="register-expense">
     </div>
-    <div class="input-group mb-3">
-      <span class="input-group-text" id="basic-addon1">Concepto</span>
-      <input type="text" class="form-control" placeholder="Ejemplo: Entrada cine" aria-label="Monto" aria-describedby="basic-addon1">
+    <div class="card" style="padding-left: 10px; padding-right: 10px; border: none;" id="historialDiv">
     </div>
-    <div class="input-group mb-3">
-      <span class="input-group-text" id="basic-addon1">Fecha</span>
-      <input type="text" class="form-control" placeholder="Ejemplo: mayo 1" aria-label="Monto" aria-describedby="basic-addon1">
-    </div>
-    <div class="d-grid gap-2">
-      <button class="btn btn-success bg-gradient" type="button" onclick="getValues()">Registrar</button>
+    <div style="padding: 10px; padding-top: 0;">
+      <div id="historial" class="overflow-auto" style="height: 206px;">
+        <div class="card" style="width: -webkit-fill-available;">
+          <ul class="list-group" id="insertMovements">
+          </ul>
+        </div>
+      </div>
     </div>
   </main>
+  <footer>
+    <div class="fixed-bottom bg-success bg-gradient m-0" id="endDate">
+    </div>
+  </footer>
 </body>
 <script>
-  setExpensesMonth()
+  setHTMLElements()
+  getMovements()
 </script>
 </html>
