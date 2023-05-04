@@ -118,19 +118,6 @@ function getValues() {
             elements[2].value = ""
           }
         })
-        // Swal.fire({
-        //   position: "center",
-        //   title: "Enviando información",
-        //   showConfirmButton: false,
-        //   confirmButtonColor: "#3085d6",
-        //   didOpen: () => {
-        //     Swal.showLoading();
-        //   },
-        // });
-        // sendData(data)
-        // elements[0].value=""
-        // elements[1].value=""
-        // elements[2].value=""
         break
       }
     }
@@ -199,10 +186,10 @@ function setBalanceAndMovements(array){
     let movements = ``;
     let balance = 3122.95;
     let actualExpenses = 0;
-    for (let i = 0; i<array.length; i++){
+    for (let i = array.length-1; i>=0; i--){
       actualExpenses = actualExpenses + parseFloat(array[i].monto)
       movements += `
-      <li class="list-group-item">$${array[i].monto} en ${array[i].concepto}</li>
+      <li class="list-group-item">${array[i].fecha} - $${array[i].monto} en ${array[i].concepto}</li>
       `
     }
     balance = parseFloat(balance - actualExpenses).toFixed(2);
@@ -213,5 +200,7 @@ function setBalanceAndMovements(array){
     <p class="card-text text-center">$${actualExpenses}</p>
     `
     insertMovements.innerHTML = movements;
+    document.getElementById("sectionToDisplay").style.display = "block"
+    document.getElementById("sectionToHide").style.display = "none"
   }
 }

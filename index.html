@@ -14,33 +14,38 @@
   <title>Registro de Gastos</title>
 </head>
 <body>
-  <div class="bg-success bg-gradient">
-    <h1 class="text-center text-white" style="margin: 0;">Registro de Gastos</h1>
-    <div class="card-header text-white" style="padding: 10px;" id="actualDate">
-    </div>
-  </div>
-  <header style="display: flex; justify-content: space-between; padding: 10px; padding-bottom: 0; column-gap: 10px;">
-    <div class="w-100" id="balanceDiv"></div>
-    <div class="w-100" id="expensesDiv"></div>
-  </header>
-  <main class="">
-    <div style="padding: 10px;" id="register-expense">
-    </div>
-    <div class="card" style="padding-left: 10px; padding-right: 10px; border: none;" id="historialDiv">
-    </div>
-    <div style="padding: 10px; padding-top: 0;">
-      <div id="historial" class="overflow-auto" style="height: 206px;">
-        <div class="card" style="width: -webkit-fill-available;">
-          <ul class="list-group" id="insertMovements">
-          </ul>
-        </div>
+  <section style="display: flex; align-items: center; justify-content: center; height: 667px;" id="sectionToHide">
+    <img src="assets/actualizado.png" alt="" style="height: 80px;" class="rotate">
+  </section>
+  <section style="display: none;" id="sectionToDisplay">
+    <div class="bg-success bg-gradient">
+      <h1 class="text-center text-white" style="margin: 0;">Registro de Gastos</h1>
+      <div class="card-header text-white" style="padding: 10px;" id="actualDate">
       </div>
     </div>
-  </main>
-  <footer>
-    <div class="fixed-bottom bg-success bg-gradient m-0" id="endDate">
-    </div>
-  </footer>
+    <header style="display: flex; justify-content: space-between; padding: 10px; padding-bottom: 0; column-gap: 10px;">
+      <div class="w-100" id="balanceDiv"></div>
+      <div class="w-100" id="expensesDiv"></div>
+    </header>
+    <main class="">
+      <div style="padding: 10px;" id="register-expense">
+      </div>
+      <div class="card" style="padding-left: 10px; padding-right: 10px; border: none;" id="historialDiv">
+      </div>
+      <div style="padding: 10px; padding-top: 0;">
+        <div id="historial" class="overflow-auto" style="height: 206px;">
+          <div class="card" style="width: -webkit-fill-available;">
+            <ul class="list-group" id="insertMovements">
+            </ul>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <div class="fixed-bottom bg-success bg-gradient m-0" id="endDate">
+      </div>
+    </footer>
+  </section>
 </body>
 <script>
   setHTMLElements()
