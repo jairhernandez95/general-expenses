@@ -57,7 +57,7 @@ function setHTMLElements(action){
     `
     document.getElementById("historialDiv").innerHTML += `
     <div class="card-header bg-success bg-gradient text-white text-center">
-        Historial
+        Historial de movimientos del mes actual
     </div>
     `
   }
@@ -251,7 +251,7 @@ function setBalanceAndMovements(array){
     for (let i = array.length-1; i>=0; i--){
       actualExpenses = actualExpenses + parseFloat(array[i].monto)
       movements += `
-      <li class="list-group-item">El ${array[i].fecha.slice(8,10)}, gastaste $${array[i].monto} en ${array[i].concepto}</li>
+      <li class="list-group-item">El ${array[i].fecha.slice(8,10)} gastaste $${array[i].monto} en ${array[i].concepto}</li>
       `
     }
     balance = parseFloat(balance - actualExpenses).toFixed(2);
