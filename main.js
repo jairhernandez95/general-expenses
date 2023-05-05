@@ -1,4 +1,8 @@
 let today = new Date;
+let previousDay = new Date(today)
+previousDay.setDate(today.getDate()-1)
+let nextDay = new Date(today)
+nextDay.setDate(today.getDate()+1)
 let lastDayOfMonth = new Date(today.getFullYear(),today.getMonth()+1,0);
 function setHTMLElements(action){
   if(action == "clean"){
@@ -165,14 +169,63 @@ function getMovements(){
   }
   axios(config)
   .then((res) => {
-    setBalanceAndMovements(res.data)
+    filterMovements(res.data)
   })
   .catch(async(err) => {
     console.log(err)
   })
 }
+function filterMovements(array){
+  let month = 0;
+  let filteredData = []
+  for (let i = 0; i<array.length; i++){
+    if(array[i].fecha.includes("enero",0)){
+      month = 1
+    }
+    if(array[i].fecha.includes("febrero",0)){
+      month = 2
+    }
+    if(array[i].fecha.includes("marzo",0)){
+      month = 3
+    }
+    if(array[i].fecha.includes("abril",0)){
+      month = 4
+    }
+    if(array[i].fecha.includes("mayo",0)){
+      month = 5
+    }
+    if(array[i].fecha.includes("junio",0)){
+      month = 6
+    }
+    if(array[i].fecha.includes("julio",0)){
+      month = 7
+    }
+    if(array[i].fecha.includes("agosto",0)){
+      month = 8
+    }
+    if(array[i].fecha.includes("septiembre",0)){
+      month = 9
+    }
+    if(array[i].fecha.includes("octubre",0)){
+      month = 10
+    }
+    if(array[i].fecha.includes("noviembre",0)){
+      month = 11
+    }
+    if(array[i].fecha.includes("diciembre",0)){
+      month = 12
+    }
+    if(month === today.getMonth()+1){
+      filteredData.push(array[i])
+    }
+  }
+  setBalanceAndMovements(filteredData)
+}
+let hoy = 1
+let manana = 31
 function setBalanceAndMovements(array){
-  if(array.length == 0){
+  console.log(typeof(array.length))
+  if( today.getDate() < previousDay.getDate() || array.length == 0 ){
     let balance = 3122.95;
     document.getElementById("card-body").innerHTML += `
     <p class="card-text text-center">$${balance}</p>
@@ -180,6 +233,8 @@ function setBalanceAndMovements(array){
     document.getElementById("card-body-expenses").innerHTML += `
     <p class="card-text text-center">$${0}</p>
     `
+    document.getElementById("sectionToDisplay").style.display = "block"
+    document.getElementById("sectionToHide").style.display = "none"
   }
   else if(array.length > 0){
     let insertMovements = document.getElementById("insertMovements")
@@ -189,7 +244,7 @@ function setBalanceAndMovements(array){
     for (let i = array.length-1; i>=0; i--){
       actualExpenses = actualExpenses + parseFloat(array[i].monto)
       movements += `
-      <li class="list-group-item">${array[i].fecha} - $${array[i].monto} en ${array[i].concepto}</li>
+      <li class="list-group-item">En ${array[i].fecha} gastaste $${array[i].monto} en ${array[i].concepto}</li>
       `
     }
     balance = parseFloat(balance - actualExpenses).toFixed(2);
@@ -204,3 +259,6 @@ function setBalanceAndMovements(array){
     document.getElementById("sectionToHide").style.display = "none"
   }
 }
+// console.log("ayer: ",previousDay)
+// console.log("hoy: ",today)
+// console.log("mañana: ",nextDay)
