@@ -57,7 +57,7 @@ function setHTMLElements(action){
     `
     document.getElementById("historialDiv").innerHTML += `
     <div class="card-header bg-success bg-gradient text-white text-center">
-        Historial de movimientos del mes actual
+        Historial del mes actual
     </div>
     `
   }
