@@ -6,7 +6,6 @@ nextDay.setDate(today.getDate()+1)
 let lastDayOfMonth = new Date(today.getFullYear(),today.getMonth()+1,0);
 
 function setHTMLElements(action){
-  console.log(action)
   if(action == "clean"){
     document.getElementById("actualDate").innerHTML = ``;
     document.getElementById("endDate").innerHTML = ``;
@@ -227,12 +226,8 @@ function filterMovements(array){
   }
   setBalanceAndMovements(filteredData)
 }
-let hoy = 1
-let manana = 31
 function setBalanceAndMovements(array){
-  console.log(array.length)
   if( today.getDate() < previousDay.getDate() || array.length == 0 ){
-    console.log("entra aquí por array.length = 0")
     let balance = 3122.95;
     document.getElementById("card-body").innerHTML += `
     <p class="card-text text-center">$${balance}</p>
@@ -259,7 +254,7 @@ function setBalanceAndMovements(array){
     <p class="card-text text-center">$${balance}</p>
     `
     document.getElementById("card-body-expenses").innerHTML += `
-    <p class="card-text text-center">$${actualExpenses}</p>
+    <p class="card-text text-center">$${actualExpenses.toFixed(2)}</p>
     `
     insertMovements.innerHTML = movements;
     document.getElementById("sectionToDisplay").style.display = "block"
