@@ -18,22 +18,27 @@
     <img src="assets/actualizado.png" alt="" style="height: 80px;" class="rotate">
   </section>
   <section style="display: none;" id="sectionToDisplay">
-    <div class="bg-success bg-gradient">
-      <h1 class="text-center text-white" style="margin: 0; padding-top: 10px;">Registro de Gastos</h1>
-      <div class="card-header text-white" style="padding: 10px;" id="actualDate">
+    <div class="fixed-top bg-white">
+      <div class="bg-success bg-gradient">
+        <h1 class="text-center text-white" style="margin: 0; padding-top: 10px;">Registro de Gastos</h1>
+        <div class="card-header text-white" style="padding: 10px;" id="actualDate">
+        </div>
       </div>
-    </div>
-    <header style="display: flex; justify-content: space-between; padding: 10px; padding-bottom: 0; column-gap: 10px;">
-      <div class="w-100" id="balanceDiv"></div>
-      <div class="w-100" id="expensesDiv"></div>
-    </header>
-    <main class="">
+      <header style="display: flex; justify-content: space-between; padding: 10px; padding-bottom: 0; column-gap: 10px;">
+        <div class="w-100" id="balanceDiv"></div>
+        <div class="w-100" id="expensesDiv"></div>
+      </header>
       <div style="padding: 10px;" id="register-expense">
       </div>
-      <div class="card" style="padding-left: 10px; padding-right: 10px; border: none;" id="historialDiv">
+      <div class="card" style="padding-left: 10px; padding-right: 10px; border: none;">
+        <div class="card-header bg-success bg-gradient text-white text-center">
+          Historial del mes actual
       </div>
+      </div>
+    </div>
+    <main class="" style="margin-top: 396px; padding-bottom: 16px;">
       <div style="padding: 10px; padding-top: 0;">
-        <div id="historial" class="overflow-auto" style="height: 204px;">
+        <div id="historial" class="overflow-auto">
           <div class="card" style="width: -webkit-fill-available;">
             <ul class="list-group" id="insertMovements">
             </ul>

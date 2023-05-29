@@ -1,9 +1,13 @@
 let today = new Date;
+today.setDate(today.getDate())
 let previousDay = new Date(today)
 previousDay.setDate(today.getDate()-1)
 let nextDay = new Date(today)
 nextDay.setDate(today.getDate()+1)
 let lastDayOfMonth = new Date(today.getFullYear(),today.getMonth()+1,0);
+console.log("ayer: ",previousDay.getDate())
+console.log("hoy: ",today.getDate())
+console.log("mañana: ",nextDay.getDate())
 
 function setHTMLElements(action){
   if(action == "clean"){
@@ -12,7 +16,6 @@ function setHTMLElements(action){
     document.getElementById("register-expense").innerHTML = ``;
     document.getElementById("balanceDiv").innerHTML = ``;
     document.getElementById("expensesDiv").innerHTML = ``;
-    document.getElementById("historialDiv").innerHTML = ``;
     setHTMLElements()
   }
   else{
@@ -52,11 +55,6 @@ function setHTMLElements(action){
         </div>
         <div class="card-body" id="card-body-expenses">
         </div>
-    </div>
-    `
-    document.getElementById("historialDiv").innerHTML += `
-    <div class="card-header bg-success bg-gradient text-white text-center">
-        Historial del mes actual
     </div>
     `
   }
@@ -173,7 +171,14 @@ function getMovements(){
   }
   axios(config)
   .then((res) => {
-    filterMovements(res.data)
+    let array = []
+    for(let i = 0; i <= res.data.length-1; i++)
+    {
+      if(parseInt((res.data[i].fecha).slice(5,7)-1) == today.getMonth()){
+        array.push(res.data[i])
+      }
+    }
+    filterMovements(array)
   })
   .catch(async(err) => {
     console.log(err)
@@ -227,6 +232,7 @@ function filterMovements(array){
   setBalanceAndMovements(filteredData)
 }
 function setBalanceAndMovements(array){
+  
   if( today.getDate() < previousDay.getDate() || array.length == 0 ){
     let balance = 3122.95;
     document.getElementById("card-body").innerHTML += `
@@ -237,6 +243,7 @@ function setBalanceAndMovements(array){
     `
     document.getElementById("sectionToDisplay").style.display = "block"
     document.getElementById("sectionToHide").style.display = "none"
+    document.getElementById("insertMovements") == ``
   }
   else if(array.length > 0){
     let insertMovements = document.getElementById("insertMovements")
@@ -261,6 +268,4 @@ function setBalanceAndMovements(array){
     document.getElementById("sectionToHide").style.display = "none"
   }
 }
-// console.log("ayer: ",previousDay)
-// console.log("hoy: ",today)
-// console.log("mañana: ",nextDay)
+
