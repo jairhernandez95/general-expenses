@@ -132,7 +132,10 @@ function sendData(array) {
   });
   var config = {
     method: "post",
-    url: "https://sheet.best/api/sheets/642164ff-8ec0-4d09-ac10-9083c2f47ea9/tabs/registro",
+    // Jair
+    // url: "https://sheet.best/api/sheets/642164ff-8ec0-4d09-ac10-9083c2f47ea9/tabs/registro",
+    // CDT
+    url: "https://sheet.best/api/sheets/a3df4f10-655b-49a5-a240-b4a5ee31fbbe/tabs/registro",
     mode: "cors",
     headers: {
       "Content-Type": "application/json",
@@ -163,7 +166,10 @@ function sendData(array) {
 function getMovements(){
   var config = {
     method: "get",
-    url: "https://sheet.best/api/sheets/642164ff-8ec0-4d09-ac10-9083c2f47ea9/tabs/registro",
+    // Jair
+    // url: "https://sheet.best/api/sheets/642164ff-8ec0-4d09-ac10-9083c2f47ea9/tabs/registro",
+    // CDT
+    url: "https://sheet.best/api/sheets/a3df4f10-655b-49a5-a240-b4a5ee31fbbe/tabs/registro",
     mode: "cors",
     headers: {
       "Content-type": "application/json"
