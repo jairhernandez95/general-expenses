@@ -1,4 +1,5 @@
 let today = new Date;
+// 2376.98
 today.setDate(today.getDate())
 let previousDay = new Date(today)
 previousDay.setDate(today.getDate()-1)
@@ -8,6 +9,7 @@ let lastDayOfMonth = new Date(today.getFullYear(),today.getMonth()+1,0);
 console.log("ayer: ",previousDay.getDate())
 console.log("hoy: ",today.getDate())
 console.log("mañana: ",nextDay.getDate())
+let availableSpending
 
 function setHTMLElements(action){
   if(action == "clean"){
@@ -238,33 +240,46 @@ function filterMovements(array){
   setBalanceAndMovements(filteredData)
 }
 function setBalanceAndMovements(array){
-  
+  console.log(availableSpending)
   if( today.getDate() < previousDay.getDate() || array.length == 0 ){
-    let balance = 3122.95;
-    document.getElementById("card-body").innerHTML += `
-    <p class="card-text text-center">$${balance}</p>
-    `
-    document.getElementById("card-body-expenses").innerHTML += `
-    <p class="card-text text-center">$${0}</p>
-    `
-    document.getElementById("sectionToDisplay").style.display = "block"
-    document.getElementById("sectionToHide").style.display = "none"
-    document.getElementById("insertMovements") == ``
+    Swal.fire({
+      title: "Escribe el gasto disponible del mes",
+      html: '<input id="swal-input1" class="swal2-input" placeholder="Escribe el monto"></input>',
+      preConfirm: () => {
+        availableSpending = parseFloat(document.getElementById("swal-input1").value);
+        localStorage.setItem("availableSpending", availableSpending)
+        console.log(availableSpending)
+        if(availableSpending === undefined){
+          setBalanceAndMovements(array)
+        }
+        else if(availableSpending !== undefined && typeof(availableSpending) === typeof(0)){
+          document.getElementById("card-body").innerHTML += `
+          <p class="card-text text-center">$${availableSpending}</p>
+          `
+          document.getElementById("card-body-expenses").innerHTML += `
+          <p class="card-text text-center">$${0}</p>
+          `
+          document.getElementById("sectionToDisplay").style.display = "block"
+          document.getElementById("sectionToHide").style.display = "none"
+          document.getElementById("insertMovements") == ``
+        }
+      },
+    });
   }
   else if(array.length > 0){
     let insertMovements = document.getElementById("insertMovements")
     let movements = ``;
-    let balance = 3122.95;
     let actualExpenses = 0;
+    let available = localStorage.getItem("availableSpending");
     for (let i = array.length-1; i>=0; i--){
       actualExpenses = actualExpenses + parseFloat(array[i].monto)
       movements += `
       <li class="list-group-item">El ${array[i].fecha.slice(8,10)} gastaste $${array[i].monto} en ${array[i].concepto}</li>
       `
     }
-    balance = parseFloat(balance - actualExpenses).toFixed(2);
+    available = parseFloat(available - actualExpenses).toFixed(2);
     document.getElementById("card-body").innerHTML += `
-    <p class="card-text text-center">$${balance}</p>
+    <p class="card-text text-center">$${available}</p>
     `
     document.getElementById("card-body-expenses").innerHTML += `
     <p class="card-text text-center">$${actualExpenses.toFixed(2)}</p>
