@@ -247,7 +247,7 @@ function setBalanceAndMovements(array){
       html: '<input id="swal-input1" class="swal2-input" placeholder="Escribe el monto"></input>',
       preConfirm: () => {
         availableSpending = parseFloat(document.getElementById("swal-input1").value);
-        localStorage.setItem("availableSpending", availableSpending)
+        // localStorage.setItem("availableSpending", availableSpending)
         console.log(availableSpending)
         if(availableSpending === undefined){
           setBalanceAndMovements(array)
@@ -270,7 +270,8 @@ function setBalanceAndMovements(array){
     let insertMovements = document.getElementById("insertMovements")
     let movements = ``;
     let actualExpenses = 0;
-    let available = localStorage.getItem("availableSpending");
+    let available = 2376.98
+    // let available = localStorage.getItem("availableSpending");
     for (let i = array.length-1; i>=0; i--){
       actualExpenses = actualExpenses + parseFloat(array[i].monto)
       movements += `
